@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulario de Contacto</title>
+  <title>Formulario de Cotización</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -56,7 +56,8 @@
     }
 
     .form-group input,
-    .form-group textarea {
+    .form-group textarea,
+    .form-group select {
       padding: 14px 16px;
       font-size: 16px;
       border: 1px solid #ccc;
@@ -68,13 +69,14 @@
     }
 
     .form-group input:focus,
-    .form-group textarea:focus {
+    .form-group textarea:focus,
+    .form-group select:focus {
       border-color: #001f3f;
     }
 
     textarea {
       resize: vertical;
-      min-height: 120px;
+      min-height: 100px;
     }
 
     .form-footer {
@@ -137,7 +139,8 @@
       }
 
       .form-group input,
-      .form-group textarea {
+      .form-group textarea,
+      .form-group select {
         font-size: 15px;
         padding: 12px 14px;
       }
@@ -152,12 +155,17 @@
 </head>
 <body>
   <div class="form-container">
-    <h2>Contáctanos</h2>
-    <form id="contact-form" action="https://formsubmit.co/aaron.baev@yahoo.com" method="POST">
+    <h2>Solicitud de Cotización</h2>
+    <form id="cotizacion-form" action="https://formsubmit.co/aaron.baev@yahoo.com" method="POST" target="_blank">
       <!-- Configuración oculta -->
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="Nuevo mensaje desde tu sitio web">
-      <input type="hidden" name="_next" value="https://www.baevmx.site/formthanks">
+      <input type="hidden" name="_subject" value="Nueva solicitud de cotización">
+      <input type="hidden" name="_next" value="https://empresabaev.github.io/formthanks/">
+
+      <div class="form-group">
+        <label class="required">Empresa/Organización:</label>
+        <input type="text" name="empresa" required>
+      </div>
 
       <div class="form-row">
         <div class="form-group">
@@ -165,36 +173,72 @@
           <input type="text" name="nombre" required>
         </div>
         <div class="form-group">
-          <label class="required">Apellido:</label>
-          <input type="text" name="apellido" required>
+          <label class="required">Teléfono:</label>
+          <input type="tel" name="telefono" required>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Empresa:</label>
-        <input type="text" name="empresa">
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label class="required">Correo electrónico:</label>
-          <input type="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label>Teléfono:</label>
-          <input type="tel" name="telefono">
-        </div>
+        <label class="required">E-mail:</label>
+        <input type="email" name="email" required>
       </div>
 
       <div class="form-group">
-        <label class="required">Mensaje:</label>
-        <textarea name="mensaje" required></textarea>
+        <label class="required">Servicio a cotizar:</label>
+        <select name="servicio" required>
+          <option value="">Seleccione una opción</option>
+          <option value="Categoría I">Categoría I: Calderas de alta presión / Recipientes criogénicos grandes</option>
+          <option value="Categoría II">Categoría II: Calderas de media presión / Tanques de almacenamiento de gas LP</option>
+          <option value="Categoría III">Categoría III: Calderas de baja presión / Compresores de aire</option>
+          <option value="Otro">Otro (especificar abajo)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Especificar servicio (si eligió "Otro"):</label>
+        <input type="text" name="otro_servicio">
+      </div>
+
+      <div class="form-group">
+        <label class="required">Cantidad:</label>
+        <select name="cantidad" required>
+          <option value="">Seleccione cantidad</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10+">10+ (especificar abajo)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Especificar cantidad (si eligió 10+):</label>
+        <input type="text" name="otra_cantidad">
+      </div>
+
+      <div class="form-group">
+        <label>Mensaje (Opcional):</label>
+        <textarea name="mensaje"></textarea>
       </div>
 
       <div class="form-footer">
-        <button type="submit">Enviar</button>
+        <button type="submit">Solicitar Cotización</button>
       </div>
     </form>
   </div>
+
+  <script>
+    const form = document.getElementById('cotizacion-form');
+    form.addEventListener('submit', function () {
+      setTimeout(() => {
+        form.reset(); // Limpia los campos tras enviar
+      }, 100);
+    });
+  </script>
 </body>
 </html>
